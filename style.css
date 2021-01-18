@@ -1,0 +1,41 @@
+body{
+background-color: aqua;
+
+}
+
+
+*{
+font-family: cursive;
+
+
+}
+
+.signup{
+margin-left: 79px;
+
+
+}
+
+.main{
+
+margin-left: 38%;
+border: 3px solid blue;
+width: 280px;
+height: 420px;
+}
+
+
+.button{
+
+    margin-left: 86px;
+
+
+
+}
+
+
+.pass{
+
+
+    margin: -1px;
+}
