@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken'); // https://github.com/auth0/node-jsonwebtoken
 var postmark = require("postmark");
 var { SERVER_SECRET } = require("../core/index");
 
-var client = new postmark.Client("ENTER YOUR POSTMARK TOKEN");
+var client = new postmark.Client("0756c83e-eac5-4526-ac5e-84577a135140");
 
 
 var { userModel, otpModel } = require("../dbrepo/models"); // problem was here, notice two dots instead of one
@@ -49,7 +49,8 @@ api.post("/signup", (req, res, next) => {
                     newUser.save((err, data) => {
                         if (!err) {
                             res.send({
-                                message: "user created"
+                                message: "user created",
+                                status: 200
                             })
                         } else {
                             console.log(err);
@@ -189,17 +190,29 @@ api.post("/forget-password", (req, res, next) => {
                     otpCode: otp
                 }).then((doc) => {
 
-                    client.sendEmail({
-                        "From": "info@arabianconsult.com",
-                        "To": req.body.email,
-                        "Subject": "Reset your password",
-                        "TextBody": `Here is your pasword reset code: ${otp}`
-                    }).then((status) => {
+                        client.sendEmail({
+                            "From": "req.res.send",
+                            "To": "irfanali_student@sysborg.com",
+                            "Subject": "Reset your password",
+                            "TextBody": `Here is your pasword reset code: ${otp}`
+                        }).then((status) => {
 
-                        console.log("status: ", status);
-                        res.send("email sent with otp")
+                            console.log("status: ", status);
+                            res.send({
+                                message:"email sent with otp",
+                               status:200
 
+                        })
                     })
+
+                    // console.log("your OTP: ", otp);
+                    // res.send({
+                    //     status: 200,
+                    //     message: "Email Send OPT",
+
+                    // })
+
+
 
                 }).catch((err) => {
                     console.log("error in creating otp: ", err);
@@ -217,7 +230,7 @@ api.post("/forget-password", (req, res, next) => {
 
 api.post("/forget-password-step-2", (req, res, next) => {
 
-    if (!req.body.email && !req.body.otp && !req.body.newPassword) {
+    if (!req.body.email && !req.body.otp && !req.body.newPass) {
 
         res.status(403).send(`
             please send email & otp in json body.
@@ -241,8 +254,6 @@ api.post("/forget-password-step-2", (req, res, next) => {
                 otpModel.find({ email: req.body.email },
                     function (err, otpData) {
 
-                        
-
                         if (err) {
                             res.status(500).send({
                                 message: "an error occured: " + JSON.stringify(err)
@@ -261,19 +272,22 @@ api.post("/forget-password-step-2", (req, res, next) => {
                             if (otpData.otpCode === req.body.otp && diff < 300000) { // correct otp code
                                 otpData.remove()
 
-                                bcrypt.stringToHash(req.body.newPassword).then(function (hash) {
+                                bcrypt.stringToHash(req.body.newPass).then(function (hash) {
                                     user.update({ password: hash }, {}, function (err, data) {
-                                        res.send("password updated");
+                                        res.send({
+                                            status:200,
+                                            message:"password updated"
+                                        });
                                     })
                                 })
 
                             } else {
-                                res.status(401).send({
+                                res.send({
                                     message: "incorrect otp"
                                 });
                             }
                         } else {
-                            res.status(401).send({
+                            res.send({
                                 message: "incorrect otp"
                             });
                         }
@@ -291,8 +305,6 @@ api.post("/forget-password-step-2", (req, res, next) => {
 module.exports = api;
 
 
-
-
-function getRandomArbitrary(min , max) {
+function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 } 

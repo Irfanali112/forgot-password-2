@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <form action="#" onsubmit="return signup()">
+            <h1 class="signup">SignUp</h1> <br> <br>
+            <label> Name: <input type="text" id="name"> </label><br> <br>
+
+            <label>Email:</label><input type="email" id="email" required><br><br>
+
+            <label>phone:</label><input type="number" maxlength="11" id="phone" required> <br><br>
+
+            <label class="pass"> Password: <input type="password" id="password" maxlength="8" required> </label> <br>
+            <br>
+
+            Gender: Male <input type="radio" value="Male"  id="gender" checked="checked">
+
+            Female <input type="radio" value="Female"  id="gender" >
+            
+            <br><br>
+            
+            <button class="button">SignUp</button>
+        
+        </form>
+   
+    </div>
+<script src="script.js" ></script>
+</body>
+
+</html>
