@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken'); // https://github.com/auth0/node-jsonwebtoken
 var postmark = require("postmark");
 var { SERVER_SECRET } = require("../core/index");
 
-var client = new postmark.Client("0756c83e-eac5-4526-ac5e-84577a135140");
+var client = new postmark.Client("ef41a5b2-5bcc-4344-8de4-81ec3892ab4e");
 
 
 var { userModel, otpModel } = require("../dbrepo/models"); // problem was here, notice two dots instead of one
@@ -191,8 +191,8 @@ api.post("/forget-password", (req, res, next) => {
                 }).then((doc) => {
 
                         client.sendEmail({
-                            "From": "req.res.send",
-                            "To": "irfanali_student@sysborg.com",
+                            "From":"irfanali_student@sysborg.com",
+                            "To":  req.body.email ,
                             "Subject": "Reset your password",
                             "TextBody": `Here is your pasword reset code: ${otp}`
                         }).then((status) => {
@@ -286,11 +286,7 @@ api.post("/forget-password-step-2", (req, res, next) => {
                                     message: "incorrect otp"
                                 });
                             }
-                        } else {
-                            res.send({
-                                message: "incorrect otp"
-                            });
-                        }
+                        } 
                     })
 
             } else {

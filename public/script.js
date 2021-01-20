@@ -112,7 +112,7 @@ function forgetpasswordstep2() {
   var email22 = localStorage.getItem("email")
   axios({
       method: 'post',
-      url: 'http://localhost:3000/forgetpasswordstep_2',
+      url: 'http://localhost:3000/forget-password-step-2',
       // url: 'https://forgetpasswordserver.herokuapp.com/login',
       withCredentials: true,
       data: {
