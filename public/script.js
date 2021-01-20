@@ -2,7 +2,6 @@ function signup() {
   axios({
       method: 'post',
       url: 'http://localhost:3000/signup',
-      // url: 'https://forgetpasswordserver.herokuapp.com/signup',
       data: {
           name: document.getElementById('name').value,
           email: document.getElementById('email').value,
@@ -33,8 +32,7 @@ function login() {
   axios({
       method: 'post',
       url: 'http://localhost:3000/login',
-      // url: 'https://forgetpasswordserver.herokuapp.com/login',
-      withCredentials: true,
+    withCredentials: true,
       data: {
 
           email: document.getElementById('Lemail').value,
@@ -107,13 +105,12 @@ function forget_password() {
     return false;
 }
 
-
 function forgetpasswordstep2() {
   var email22 = localStorage.getItem("email")
   axios({
       method: 'post',
       url: 'http://localhost:3000/forget-password-step-2',
-      // url: 'https://forgetpasswordserver.herokuapp.com/login',
+   
       withCredentials: true,
       data: {
           email:email22,
