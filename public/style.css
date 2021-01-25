@@ -41,8 +41,9 @@ height: 420px;
 .side{
 
 background-color: lightcoral;
-width: 170px;
+width: 200px;
 height: 920px;
+position: absolute;
 
 
 }
@@ -51,9 +52,10 @@ height: 920px;
 
     
     background-color: white;
-    width: 800px;
+    width: 1000px;
     height: 920px;
-    margin-left: 190px
+    margin-left:210px;
+    position: absolute;
 
 }
 
@@ -61,7 +63,7 @@ height: 920px;
 .inputmessage{
 
 text-align: center;
-
+margin-bottom: 10px;
 
 
 }
