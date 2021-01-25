@@ -10,6 +10,7 @@ function signup() {
           gender: document.getElementById('gender').value,
           
       },
+      
     credentials:"include"
   }).then((response) => {
       if (response.data.status === 200) {

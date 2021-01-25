@@ -266,12 +266,12 @@ api.post("/forget-password-step-2", (req, res, next) => {
                             console.log("otpData: ", otpData);
 
                             const now = new Date().getTime();
-                            const otpIat = new Date(otpData.createdOn).getTime(); // 2021-01-06T13:08:33.657+0000
-                            const diff = now - otpIat; // 300000 5 minute
+                            const otpIat = new Date(otpData.createdOn).getTime(); 
+                            const diff = now - otpIat;
 
                             console.log("diff: ", diff);
 
-                            if (otpData.otpCode === req.body.otp && diff < 300000) { // correct otp code
+                            if (otpData.otpCode === req.body.otp && diff < 300000) { 
                                 otpData.remove()
 
                                 bcrypt.stringToHash(req.body.newPass).then(function (hash) {

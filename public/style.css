@@ -35,7 +35,33 @@ height: 420px;
 
 
 .pass{
+ margin: -1px;
+}
+
+.side{
+
+background-color: lightcoral;
+width: 170px;
+height: 920px;
 
 
-    margin: -1px;
+}
+
+.tweets{
+
+    
+    background-color: white;
+    width: 800px;
+    height: 920px;
+    margin-left: 190px
+
+}
+
+
+.inputmessage{
+
+text-align: center;
+
+
+
 }
